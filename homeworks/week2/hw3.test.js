@@ -10,8 +10,11 @@ describe("hw3", function() {
   it("should return correct answer when n = 3", function() {
     expect(isPrime(3)).toBe(true)
   })
-  it("should return correct answer when n = 3", function() {
+  it("should return correct answer when n = 4", function() {
     expect(isPrime(4)).toBe(false)
+  })
+  it("should return correct answer when n = 5", function() {
+    expect(isPrime(5)).toBe(true)
   })
   it("should return correct answer when n = 0", function() {
     expect(isPrime(0)).toBe(false)
