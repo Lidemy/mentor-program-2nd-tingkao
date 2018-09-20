@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>仿 Google 表單</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            font-family: 微軟正黑體;
+        }
+        .banner{
+           width: 100%;
+           height: 300px;
+        }
+        .wrap{
+            padding-bottom: 100px;
+            background-color: rgb(184, 255, 255);
+        }
+        .main{
+            max-width: 600px;
+            background-color: #fff;
+            border-top: solid 10px #aaa;
+            position: relative;
+            top: -100px;
+            left: 0;
+            right: 0;
+            margin: auto;
+            padding: 45px;
+        }
+        h1{
+            margin-bottom: 40px;
+        }
+        p > span{
+            color: red;
+        }
+        
+        .main__intro li{
+            list-style: none;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        .main__list > li{
+            list-style: none;
+            padding: 20px 30px 40px 30px;
+            margin: -20px -30px -40px -30px;
+            margin-bottom: 30px;
+        }
+        .main__list > li p:first-child{
+            font-size: 22px;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+        .main__list > li p:nth-child(2){
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        .main__intro li:last-child{
+            display: inline-block;
+            color: red;
+            margin-bottom: 30px;
+
+        }
+        .main__list input{
+            margin-top: 10px;
+            border: none;
+            border-bottom: 1px solid #aaa;
+            width: 300px;
+            height: 30px;
+        }
+        .main__list input::-webkit-input-placeholder{
+            padding: 5px;
+        }
+        .submit__btn{
+            padding: 8px 30px;
+            font-size: 16px;
+            border-radius: 5px;
+            background-color: rgb(96, 113, 204);
+            color: white;
+            border: none;
+        }
+        .submit__btn:hover{
+            cursor: pointer;
+            background-color: rgb(37, 54, 155);
+            font-weight: 900;
+        }
+        .warning{
+            color: rgb(224, 66, 66);
+            margin-top: 22px;
+            margin-bottom: -18px;
+        }
+    
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        
+        <img class='banner' src="https://images.unsplash.com/photo-1537351869351-d0873961602b?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=fbcc86904052dda288d712c73afe009a&auto=format&fit=crop&w=1500&q=80" alt="">
+        <div class="main">
+            <h1>從零到一：程式導師實驗計畫報名表單</h1>
+            <ul class='main__intro'>
+                <li>詳情請參考：<a href="https://medium.com/@hulitw/mentor-program-b5f96ae1eed1">https://medium.com/@hulitw/mentor-program-b5f96ae1eed1</a></li>
+                <li>記得填完表單之後還要寫信報名才算成功，兩者缺一不可！</li>
+                <li>*必填</li>
+            </ul>
+            <ul class="main__list">
+                <li>
+                    <p class= 'item'>電子郵件地址 <span>*</span></p>
+                    <input class='done' type="text" placeholder="您的電子郵件">
+                </li>
+                <li>
+                    <p class= 'item'>暱稱 <span>*</span></p>
+                    <p>該怎麼稱呼你</p>
+                    <input class='done' type="text" placeholder="您的回答">
+                </li>
+                <li>
+                    <p class= 'item'>是否有程式相關背景？ <span>*</span></p>
+                    <p>範例：無、高中時候學過C++、學過一點網頁前端、目前在資策會上課...</p>
+                    <input class='done' type="text" placeholder="您的回答">
+                </li>
+                <li>
+                    <p class= 'item'>其他 </p>
+                    <p>其他任何你想講的</p>
+                    <input  type="text" placeholder="您的回答">
+                </li>
+            </ul>
+            <input class='submit__btn' name="submit" id="submit" type="submit">
+
+
+        </div>
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>

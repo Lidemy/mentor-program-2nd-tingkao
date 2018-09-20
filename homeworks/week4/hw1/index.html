@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            font-family: 微軟正黑體;
+        }
+        .wrap{
+            display: flex;
+            justify-content: center;
+            margin-top: 100px;
+            font-size: 20px;
+        }
+        .calculator{
+            border-radius: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            padding: 10px 10px 5px 10px;
+            width: 370px;
+            background-color: #ddd;
+            box-shadow: 0 0 20px -5px rgba(0,0,0,0.4);
+
+        }
+        .screen{
+            width: 100%;
+            height: 60px;
+            margin-bottom: 5px;
+            border-radius: 5px;
+            background-color: #fff;
+            box-shadow: 0 0 10px -2px rgba(0,0,0,0.2);
+            font-size: 30px;
+            text-align: right;
+            line-height: 60px;
+            padding: 0 10px;
+            overflow: hidden;
+            /* 這邊要怎麼讓超出的數字從左邊消失??? 目前看來因為數字是往右邊增加的，所以當數字過多時，消失的數字是新打上去的數字
+            而不是前端的數字，但以計算機來說應該是一開始的數字被左邊隱藏掉 */
+        }
+        .btn{
+            background-color: #bbb;
+            border-radius: 5px;
+            text-align: center;
+            line-height: 36px;
+            width: 80px;
+            height: 36px;
+            margin: 5px 0;
+            box-sizing: border-box;
+            box-shadow: 0 0 10px -2px rgba(0,0,0,0.2);
+        }
+        .btn:hover{
+            background-color: #777;
+            color: white;
+            font-weight: 500;
+            cursor: pointer;
+            transform: scale(1.2);
+        }
+        .btn:active{
+            background-color: rgb(39, 84, 102);
+        }
+        .equal{
+            width: 175px;
+        }
+        .clearflex{
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="calculator">
+            <div class="screen" ></div>
+            <div class="btn btn__AC">AC</div>
+            <div class="btn count">÷</div>
+            <div class="clearflex"></div>
+            <div class="btn">7</div>
+            <div class="btn">8</div>
+            <div class="btn">9</div>
+            <div class="btn count">×</div>
+            <div class="btn">4</div>
+            <div class="btn">5</div>
+            <div class="btn">6</div>
+            <div class="btn count">-</div>
+            <div class="btn">1</div>
+            <div class="btn">2</div>
+            <div class="btn">3</div>
+            <div class="btn count">+</div>
+            <div class="btn">0</div>
+            <div class="btn">.</div>
+            <div class="btn equal">=</div>
+        </div>
+    </div>
+    <script>
+        let num =''
+        let temp
+        let ans
+        let operation
+        // 上面的這些變數，為了不要讓他在跑 forEach 的時候每次都把數值歸零，所以放在外面，但是一般會這樣使用嗎?
+        // 這樣不就產生了很多全域變數嗎??
+        document.querySelectorAll('.btn').forEach(function(e){
+            e.addEventListener('click',function(){
+                let screen = document.querySelector('.screen')
+                let screenText = screen.innerText
+                let screenLastText = screen.innerText[screen.innerText.length - 1]
+                
+                if(e.classList.contains('btn__AC')){
+                    screen.innerText = '';
+                    temp = ''
+                    num = ''
+                    ans = ''
+                }else{
+                    if(Number(e.innerText)){
+                        // 如果按的是數字，不是零的時候，排除零在第一個位置。screen 為螢幕顯示，num 為實際運算的數字
+                        screen.innerText += e.innerText
+                        num += e.innerText
+                        console.log(num)
+                    }else if (e.innerText == '.' &&  (Number(screenLastText) || screenLastText == 0)){
+                        // 如果按的是小數點，而且前面是數字 >> 為正確使用，增加進數組
+                        screen.innerText += e.innerText
+                        num += e.innerText
+                        console.log(num)
+                    }else if (e.innerText == 0 &&  (Number(screenLastText) || screenLastText == 0)){
+                        // 如果按的是零，而且前面是數字或零 >> 為正確使用，增加進數組
+                        screen.innerText += e.innerText
+                        num += e.innerText
+                        console.log(num)
+                    }else if(e.classList.contains('count')){
+                        // 如果是加減乘除，且前一個是數字或零(下面的 if 判斷) >> 為正確運算，則暫存數字和符號，並把 num 歸零(從新撿取新的數組)
+                        // 如果 ans 有數值，就傳到 temp 暫存
+                        if(!Number(screenLastText) && !(screenLastText == 0)) return
+                        temp = (Number(ans)) ? Number(ans) : num
+                        operation = e.innerText
+                        num = ''
+                        screen.innerText = screen.innerText + e.innerText
+                        console.log('temp:' + temp)
+                        console.log('operation:' + operation)
+                    }else if(e.classList.contains('equal')){
+                        if(operation == '+'){ ans = Number(temp) + Number(num) }
+                        if(operation == '-'){ ans = Number(temp) - Number(num) }
+                        if(operation == '×'){ ans = Number(temp) * Number(num) }
+                        if(operation == '÷'){ ans = Number(temp) / Number(num) }
+                        // 設一個變數暫存是從範例裡得知的方法，一開始在怎麼讓印出來的字串相加想了很久，用 replace 也不行，因為出來的結果還是字串
+                        screen.innerText = ans;
+                        console.log('ans:' + ans)
+                    }
+                    if(screen.innerText.length > 15){
+                        screen.style.fontSize = '22px';
+                    }else{
+                        screen.style.fontSize = '36px'
+                    }
+                }
+
+            
+            },false)
+        })
+    </script>
+</body>
+</html>
