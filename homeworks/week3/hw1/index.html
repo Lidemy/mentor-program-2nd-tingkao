@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            font-family: 微軟正黑體;
+        }
+        nav{
+            background-color: #343a40;
+            height: 50px;
+            padding-left: 15px;
+            box-sizing: border-box;
+        }
+        nav ul{
+            display: flex;
+        }
+
+        nav li{
+            list-style: none;
+            margin-right: 15px;
+        }
+        a{
+            text-decoration: none;
+            color: gray;
+            font-size: 18px;
+            line-height: 50px;
+            bottom: 0;
+        }
+        a.navbarLogo{
+            color: white;
+        }
+        .headerhv :hover{
+            color: white;
+        }
+        header{
+            padding: 40px 20px;
+            background-color: #e9ecef;
+        }
+        header h1{
+            font-size: 72px;
+            font-weight: 300;
+        }
+        header > div{
+            margin: auto;
+            max-width: 1200px;
+        }
+        section{
+            padding: 50px 20px;
+        }
+        article{
+            margin-bottom: 20px;
+        }
+        article > h2{
+            margin-bottom: 15px;
+            font-size: 32px;
+        }
+        article > p{
+            margin-bottom: 10px;
+        }
+        .headerbtn{
+            display: inline-block;
+            background-color: rgb(7, 136, 250);
+            padding: 10px 15px;
+            line-height: 1.2;
+            font-size: 22px;
+            color: white;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .articlebtn{
+            display: inline-block;
+            background-color: rgb(108, 117, 125);
+            padding: 12px 10px;
+            font-size: 16px;
+            color: white;
+            border-radius: 5px;
+        }
+        footer{
+            margin-left: 20px;
+        }
+        @media screen and (min-width: 747px){
+            section{
+                max-width: 1200px;
+                margin: auto;
+                display: flex;
+                flex-wrap: wrap;
+            }
+            footer{
+                max-width: 1200px;
+                margin: auto;
+            }
+            article{
+                width: calc((100% - 40px)/3);
+            }
+            article + article{
+                margin-left: 20px;
+            }
+
+        }
+    </style>
+</head>
+<body>
+    <nav class="menu">
+        <ul>
+            <li><a href="#" class="navbarLogo">Navbar</a></li>
+            <li class="headerhv"><a href="#">Home</a></li>
+            <li class="headerhv"><a href="#">Link</a></li>
+        </ul>
+    </nav>
+    <header>
+        <div>
+            <h1>Hello, world!</h1>
+            <p>This is a template for a simple marketing or informational 
+                website. It includes a large callout called a jumbotron and 
+                three supporting pieces of content. Use it as a starting point 
+                to create something more unique.
+            </p>
+            <div class="headerbtn">Learn more</div>
+        </div>
+
+    </header>
+    <div class="wrap">
+        <section>
+            <article>
+                <h2>Heading</h2>
+                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, 
+                    tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum 
+                    massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. 
+                    Donec sed odio dui.
+                </p>
+                <div class="articlebtn">View details >></div>
+            </article>
+            <article>
+                <h2>Heading</h2>
+                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, 
+                    tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum 
+                    massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. 
+                    Donec sed odio dui.
+                </p>
+                <div class="articlebtn">View details >></div>
+            </article>
+            <article>
+                <h2>Heading</h2>
+                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, 
+                    tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum 
+                    massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. 
+                    Donec sed odio dui.
+                </p>
+                <div class="articlebtn">View details >></div>
+            </article>
+        </section>
+        <footer>
+            <p>@Company 2017-2018</p>
+        </footer>
+    </div>
+</body>
+</html>
