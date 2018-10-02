@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>week4-hw4</title>
+</head>
+<body>
+ <div class="title">12345</div>
+</body>
+<script>
+  let q = (el)=> {
+    return {
+      hide : ()=> { document.querySelector(el).style.display = 'none' },
+      show : ()=> {document.querySelector(el).style.display = 'block'}
+    }
+  }
+
+  let element = q('.title')
+  element.hide()
+  element.show()
+</script>
+</html>
