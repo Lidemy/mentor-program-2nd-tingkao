@@ -4,10 +4,87 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <title>JS Bin</title>
+  <style>
+    *{
+      padding: 0;
+      margin: 0;
+      font-family: 微軟正黑體;
+    }
+    .wrap{
+      background-image: url('https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1539048074&di=f89dbf45816dca445c653c2a456d233c&imgtype=jpg&er=1&src=http%3A%2F%2Fimages.17173.com%2F2015%2Fnews%2F2015%2F05%2F28%2Fhxz0528twit01.jpg');
+    }
+    li{
+      list-style: none;
+    }
+    .list{
+      max-width: 1000px;
+      height: 100%;
+      margin: auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    .item{
+      border: solid 2px #333;
+      width: 32%;
+      height: 240px;
+      /*320/1000*/
+      /*240/320*/
+      background-color: #000;
+      margin: 20px 0;
+      position: relative;
+      color: #fff;
+      letter-spacing: 1px;
+
+    }
+    .item-info{
+      height: 60px;
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0px;
+      disolay: flex;
+      justify-content: space-around;
+      align-items: middle;
+    }
+    .item-logo{
+      height: 50px;
+      width: 50px;
+      border-radius: 50%;
+      position: absolute;
+      left: 5px;
+      right: 0;
+      top: 5px;
+      bottom: 0;
+    }
+    .item-name{
+      display: inline-block;
+      margin-left: 60px;
+      margin-right: 20px;
+      margin-top: 5px;
+      width: calc(100% - 60px);
+      text-align: center;
+    }
+    .item-status{
+      display: inline-block;
+      position: absolute;
+      height: 20px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap; 
+      font-size: 14px;
+      line-height: 20px;
+      letter-spacing: normal;
+      bottom: 10px;
+      left:60;
+      right: 0;
+      text-align: center;
+      width: calc(100% - 60px);
+      margin-top: 10px;
+    }
+  </style>
 </head>
 <body>
-
-<div class="bg">
   <div class="wrap">
     <ul class="list">
       <li class="item">1
@@ -152,7 +229,40 @@
       </li>
     </ul>
   </div>
-</div>
-
 </body>
+<script>
+  document.addEventListener('DOMContentLoaded', getData)
+  function getData(){
+    let request = new XMLHttpRequest();
+    request.open('GET', 'https://api.twitch.tv/kraken/streams/?client_id=uwpvt9ahl8ysuv4r7ditx45msdv1sb&game=League%20of%20Legends&limit=20', true);
+    request.onload = function (response){
+      if (request.status >= 200 && request.status < 400){
+        let dataArry = JSON.parse(request.responseText).streams
+        dataArry.forEach(function(element, index){
+          let preview = element.preview['medium']
+          let item_nth = document.querySelectorAll('li.item')[index]
+          item_nth.style.backgroundImage = 'url(' + preview + ')'
+          item_nth.style.backgroundRepeat = 'no-repeat'
+
+          let logo = element.channel['logo']
+          let logo_nth = document.querySelectorAll('.item-logo')[index]
+          logo_nth.style.backgroundImage = 'url(' + logo + ')'
+          logo_nth.style.backgroundSize = 'cover'
+
+          let name = element.channel['name']
+          let name_nth = document.querySelectorAll('.item-name')[index]
+          name_nth.innerText = name
+
+          let status = element.channel['status']
+          let status_nth = document.querySelectorAll('.item-status')[index]
+          status_nth.innerText = status
+        })
+        console.log('success!')
+      }else{
+       console.log('error')
+      }
+    };
+    request.send();
+  }
+</script>
 </html>
