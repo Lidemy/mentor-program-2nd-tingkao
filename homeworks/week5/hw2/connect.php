@@ -2,8 +2,8 @@
 <?php
 // 建立登入檔案
 $servername = "166.62.28.131"; 
-$username = "student2nd";
-$password = "mentorstudent123";
+$username = "";
+$password = "";
 $dbname = "mentor_program_db";
 
 //連接資料庫
