@@ -5,64 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>LogIn</title>
-    <style>
-        .wrap{
-            height: 90vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .content{
-            width: 300px;
-            border-radius: 15px;
-            background-color: rgb(26, 78, 112);
-            padding: 40px 20px 20px 20px;
-            box-shadow: 0 0 20px -5px;
-        }
-        .input{
-            display: block;
-            margin: auto;
-            outline: none;
-            border: solid 1.5px #fff;
-            margin-bottom: 20px;
-        }
-        .user_id, .user_password, .user_nickname{
-            width: 80%;
-            height: 25px;
-            border-radius: 5px;
-        }
-        .user_password{
-            margin-bottom: 30px;
-        }
-        #login_btn{
-            width: 80px;
-            padding: 4px;
-            border-radius: 5px;
-        }
-        #login_btn:hover{
-            background-color: rgb(153, 214, 255);
-            color: #fff;
-            font-weight: 900;
-            letter-spacing: 1px;
-            cursor: pointer;
-            transform: scale(1.1);
-        }
-
-        .change_btn{
-            text-align: center;
-            margin-top: -10px;
-            color: #ccc;
-        }
-        .change_btn:hover{
-            cursor: pointer;
-            color: #fff;
-            transform: scale(1.05);
-        }
-        .display-none{
-            display: none;
-        }
-    
-    </style>
+    <link rel="stylesheet" href="css/login.css">
 </head>
 <body>
     <div class="wrap">
