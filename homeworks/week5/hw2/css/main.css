@@ -1,0 +1,149 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: 微軟正黑體;
+    vertical-align: middle;
+}
+.wrap{
+    max-width: 700px;
+    margin: auto;
+    margin-top: 100px;
+}
+.title{
+    margin-bottom: 10px;
+}
+.comment, .message{
+    background-color: #eee;
+    padding: 10px 10px;
+    margin-bottom: 20px;
+}
+.comment__name, .comment__text, .sub-message__form-name,.sub-message__form-text{
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 5px;
+    border: none;
+    box-shadow: 0 0 10px -5px;
+    outline: none;
+}
+.comment__text{
+    text-align: left;
+    padding-top: 2px;
+    margin-top: 10px;
+    resize: none;
+}
+.message__bg{
+    position: relative;
+    background-color: #fff;
+    padding: 15px 60px 5px 60px;
+    box-shadow: 0 0 10px -5px;
+
+}
+.message__index{
+    position: absolute;
+    left: 10px;
+    top: 15px;
+    font-size: 12px;
+
+}
+.message__pic, .sub-message__pic{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #aaa;
+    display: inline-block;
+}
+.message__info, .sub-message__info{
+    display: inline-block;
+    margin-left: 8px;
+    font-size: 12px;
+}
+.message__text{
+    margin-top: 15px;
+    padding-bottom: 40px;
+}
+.sub-message{
+    margin-top: 10px;
+}
+.sub-message__text{
+    margin-top: 15px;
+    padding-bottom: 10px;
+}
+
+.sub-message__sum{
+    margin-bottom: 5px;
+    font-size: 12px;
+}
+.sub-message__form-text{
+    margin-top: 10px;
+}
+.sub-message__form, .sub-message{
+    background-color: rgb(189, 213, 245);
+    padding: 10px;
+    margin-bottom: 10px;
+}
+.comment__btn, .message__btn{
+    padding: 5px 10px;
+    background: rgb(26, 78, 112);
+    margin-top: 10px;
+    border-radius: 5px;
+    color: #fff;
+}
+.comment__btn:hover, .message__btn:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+}
+.comment_id{
+    display: none;
+}
+.go-message_btn{
+    display: inline-block;
+    padding: 5px 10px;
+    background: #ddd;
+    font-size: 12px;
+    letter-spacing: 1px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.display-none{
+    display: none;
+}
+.logout{
+    display: inline-block;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border: solid 1px;
+    padding: 10px 20px;
+    transition: all 0.2s;
+}
+.logout:hover{
+    transform: scale(0.9);
+    cursor: pointer;
+    background: #9e212d;
+    color: #fff;
+    border: none;
+}
+.pages{
+    text-align: center;
+}
+.page{
+    display: inline-block;
+    margin: 10px;
+    cursor: pointer;
+}
+.page--clicked{
+    color: red;
+    transform: scale(1.2);
+}
+.form_pages{
+    text-align: center;
+}
+.form_pages-input{
+    display: inline-block;
+    width: 25px;
+    cursor: pointer;
+    font-size: 18px;
+    margin: 5px;
+    border: none;
+}
