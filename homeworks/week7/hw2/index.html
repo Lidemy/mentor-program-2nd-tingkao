@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <title>ToDoList</title>
+</head>
+<body>
+    <div class="bg">
+        <div class="wrap">
+            <header class="header">todos</header>
+            <div class="co-add-list">
+                <input type="text" class="add-list" placeholder="What needs to be done?" >
+                <span class="add-btn">add</span>
+            </div>
+            <ul class="co-list co-list-all">                   
+                <li class="list">
+                    <input class="checkbox" type="checkbox" >
+                    <label class="label" for="">作業一</label>
+                    <span class="delete-btn">X</span>
+                </li>
+
+            </ul>
+            <div class="list list-info">
+                    <p>3 item left</p>
+                    <div class="status">
+                        <div class="btn clicked">All</div>
+                        <div class="btn">Active</div>
+                        <div class="btn">Completed</div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    function itemLeft(q){
+        let sum = document.querySelectorAll(q).length
+        document.querySelector('.list-info > p').innerText = sum + '    item left'
+    } //計算並顯示有幾個 item
+    itemLeft('.co-list > .list')
+
+    document.querySelector('.add-list').addEventListener('click', function(){
+        document.querySelector('.add-list').style.width = '85%'; 
+        document.querySelector('.add-btn').style.display = 'inline-block';
+    })
+    
+    let number = 1
+    document.querySelector('.add-btn').addEventListener('click', function(){
+        let newList = document.querySelector('.add-list').value;
+        let newLi = document.createElement('li')
+        newLi.className = "list"
+        let inputHTML = '<input class="checkbox" type="checkbox" id="input'+ number +' "name="input'+ number +'" >'
+        let labelHTML = '<label id="label'+ number +'" class="label" for="input'+ number +'"></label>'
+        let deleteHTML = '<span class="delete-btn">X</span>'
+        newLi.innerHTML = inputHTML + labelHTML + deleteHTML
+        document.querySelector('.co-list').appendChild(newLi)
+        document.querySelector('#label' + number).innerText = newList
+        number += 1
+        itemLeft('.co-list > .list:not(.done)')
+        document.querySelector('.add-list').value = ''
+
+    })
+    function foreach_remove_class(e, c){
+        e.forEach(function(el){
+            el.classList.remove(c)
+        })
+    }
+    document.querySelectorAll('.btn').forEach(function(el){
+        el.addEventListener('click', function(e){
+            foreach_remove_class(el.parentNode.querySelectorAll('.btn'), 'clicked')
+            el.classList.add('clicked')
+            if(el.innerText === 'Active'){
+                document.querySelectorAll('.list:not(.list-info)').forEach(function(e){
+                    if(e.querySelector('.label').classList.contains('done')){
+                        e.classList.add('display-none')
+                    }else{
+                        e.classList.remove('display-none')
+                    }
+                    itemLeft('.co-list > .list:not(.display-none)')
+                })  
+
+            }else if(el.innerText === 'Completed'){
+                document.querySelectorAll('.list:not(.list-info)').forEach(function(e){
+                    if(e.querySelector('.label').classList.contains('done')){
+                        e.classList.remove('display-none')
+                    }else{
+                        e.classList.add('display-none')
+                    }
+                    itemLeft('.co-list > .list:not(.display-none)')
+                })
+            }else if(el.innerText === 'All'){
+                document.querySelectorAll('.list:not(.list-info)').forEach(function(e){
+                    if(e.classList.contains('display-none')){
+                        e.classList.remove('display-none')
+                    }
+                    itemLeft('.co-list > .list:not(.display-none)')
+                })            
+            }
+        })
+    })
+    document.querySelector('.co-list').addEventListener('click', function(e){
+        if(e.target.classList.contains('label')){
+            let isChecked = e.target.parentNode.querySelector('.checkbox')
+            isChecked.checked = isChecked.checked?false:true
+            e.target.classList.toggle('done')
+        }else if(e.target.classList.contains('checkbox')){
+            e.target.parentNode.querySelector('.label').classList.toggle('done')
+        }else if(!e.target.classList.contains('delete-btn')) {
+            let isChecked = e.target.querySelector('.checkbox')
+            isChecked.checked = isChecked.checked?false:true
+            e.target.querySelector('.label').classList.toggle('done')
+        }
+        if(e.target.classList.contains('delete-btn')){
+            e.target.parentNode.remove()
+            itemLeft('.co-list > .list:not(.display-none)')
+        }
+    })
+    //這邊不知道為什麼後來新增的 label 和 checkbox 沒有辦法用 for 和 id 的屬性綁定 checked 功能，
+    //所以在 script 這邊手動加入 label 和 checkbox 的連動關係
+
+</script>
+</html>
